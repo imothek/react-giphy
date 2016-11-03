@@ -14,13 +14,13 @@ class InputKeyword extends React.Component {
 			let context = this,
 				args = arguments;
 			let callNow = immediate && !timeout;
-			clearTimeout(timeout);
 			let _delay = function() {
 				timeout = null;
 				if(!immediate) {
 					func.apply(context, args);
 				}
 			}
+			clearTimeout(timeout);
 			timeout = setTimeout(_delay, wait);
 			if(callNow) func.apply(context, args);
 		}
@@ -81,13 +81,17 @@ class ImageList extends React.Component {
 	}
 }
 
-class Image extends React.Component {
-	render() {
-		return(
-			<li className="giphy__item"><img src={this.props.src} /></li>
-		);
-	}
+function Image({ src }) {
+	return <li className="giphy__item"><img src={src} /></li>;
 }
+
+// class Image extends React.Component {
+// 	render() {
+// 		return(
+// 			<li className="giphy__item"><img src={this.props.src} /></li>
+// 		);
+// 	}
+// }
 
 class Giphy extends React.Component {
 	constructor() {
